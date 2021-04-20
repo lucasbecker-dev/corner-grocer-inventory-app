@@ -141,10 +141,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CPPCode.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PythonCode.py" />
+    <ClInclude Include="Menu.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="x64\Release\PythonCode.py" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

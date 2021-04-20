@@ -1,7 +1,9 @@
+#include "Menu.h"
 #include <Python.h>
-#include <iostream>
 #include <Windows.h>
+
 #include <cmath>
+#include <iostream>
 #include <string>
 
 using namespace std;
@@ -18,6 +20,7 @@ Return:
 */
 void CallProcedure(string pName) {
 	char* procname = new char[pName.length() + 1];
+#pragma warning(suppress : 4996)
 	std::strcpy(procname, pName.c_str());
 
 	Py_Initialize();
@@ -43,9 +46,11 @@ Return:
 */
 int callIntFunc(string proc, string param) {
 	char* procname = new char[proc.length() + 1];
+#pragma warning(suppress : 4996)
 	std::strcpy(procname, proc.c_str());
 
 	char* paramval = new char[param.length() + 1];
+#pragma warning(suppress : 4996)
 	std::strcpy(paramval, param.c_str());
 
 	PyObject* pName, * pModule, * pDict, * pFunc, * pValue = nullptr, * presult = nullptr;
@@ -93,6 +98,7 @@ Return:
 */
 int callIntFunc(string proc, int param) {
 	char* procname = new char[proc.length() + 1];
+#pragma warning(suppress : 4996)
 	std::strcpy(procname, proc.c_str());
 
 	PyObject* pName, * pModule, * pDict, * pFunc, * pValue = nullptr, * presult = nullptr;
@@ -129,8 +135,26 @@ int callIntFunc(string proc, int param) {
 	return _PyLong_AsInt(presult);
 }
 
-void main() {
-	CallProcedure("printsomething");
-	cout << callIntFunc("PrintMe", "House") << endl;
-	cout << callIntFunc("SquareValue", 2);
+/*
+Description:
+	Runs the appropriate branch of the program and calls the relevant Python function
+Example:
+	keep_running = run_python_code(user_menu_selection);
+Output:
+	Varies depending on Python function called, if any
+Return:
+	true if program should continue, false if not
+*/
+bool runPythonCode(const Menu::choice& choice) {
+	// TODO: implement dis
+	return false;
+}
+
+int main() {
+	//CallProcedure("printsomething");
+	//std::cout << callIntFunc("PrintMe", "House") << std::endl;
+	//std::cout << callIntFunc("SquareValue", 2);
+	auto mainMenu = std::make_unique<Menu>();
+	cout << mainMenu->getMenuText();
+	return 0;
 }
