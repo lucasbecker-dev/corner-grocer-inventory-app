@@ -105,3 +105,47 @@ Menu::choice Menu::printAndGetInput() {
 	// cast input to Menu::choice and return
 	return static_cast<Menu::choice>(user_input);
 }
+
+/*
+Description:
+	Overloaded stream extraction operator for easy printing of menu text
+Example:
+	std::cout << MyMenu;
+Output:
+	Contents of m_menu_text_ (see default constructor)
+Return:
+	calling output stream
+*/
+std::ostream& operator<<(std::ostream& os, const Menu& obj) {
+	return os << obj.m_menu_text_;
+}
+
+/*
+Description:
+	Overloaded stream insertion operator for easy changing of user input
+Example:
+	std::cin >> MyMenu;
+Output:
+	None (only error messages if exceptions caught)
+Return:
+	calling input stream
+*/
+std::istream& operator>>(std::istream& is, Menu& obj) {
+	// Obtain and validate user input:
+	try {
+		int temp;
+		is >> temp;
+		if (temp < 1 || temp > 4) {
+			throw std::out_of_range("User input must be 1-4.");
+		}
+		obj.m_user_choice_ = static_cast<Menu::choice>(temp);
+	}
+	catch (const std::out_of_range& e) {
+		std::cout << "Error: " << e.what();
+	}
+	catch (const std::exception& e) {
+		std::cout << "Error: " << e.what();
+	}
+	// Return to calling stream insertion
+	return is;
+}

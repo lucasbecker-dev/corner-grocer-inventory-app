@@ -154,7 +154,13 @@ int main() {
 	//CallProcedure("printsomething");
 	//std::cout << callIntFunc("PrintMe", "House") << std::endl;
 	//std::cout << callIntFunc("SquareValue", 2);
-	auto mainMenu = std::make_unique<Menu>();
-	cout << mainMenu->getMenuText();
+	try {
+		auto mainMenu = std::make_unique<Menu>();
+		int userInput = mainMenu->printAndGetInput();
+		runPythonCode(static_cast<Menu::choice>(userInput));
+	}
+	catch (const std::exception& e) {
+		cout << "Error: " << e.what();
+	}
 	return 0;
 }

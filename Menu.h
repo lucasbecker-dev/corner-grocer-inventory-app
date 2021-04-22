@@ -3,6 +3,7 @@
 
 #include <string>
 #include <memory>
+#include <ostream>
 
 /*
 Description:
@@ -35,6 +36,10 @@ public:
 	void print();
 	// Prints Menu then obtains and returns user input
 	Menu::choice printAndGetInput();
+	// Overloaded stream extraction operator for easier printing of menu text
+	friend std::ostream& operator<< (std::ostream& os, const Menu& obj);
+	// Overloaded stream insertion operator for easy changing of user input
+	friend std::istream& operator>> (std::istream& is, Menu& obj);
 private:
 	std::unique_ptr<std::string> m_menu_text_;
 	Menu::choice m_user_choice_;
