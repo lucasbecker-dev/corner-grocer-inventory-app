@@ -3,6 +3,8 @@
 #include <Windows.h>
 
 #include <cmath>
+#include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <string>
 
@@ -137,15 +139,31 @@ int callIntFunc(string proc, int param) {
 
 /*
 Description:
+	Prints a histogram derived from the file parameter
+Example:
+	printHistogram();
+Output:
+	Item1 ****
+	Item2 ******
+	Item3 *****
+	and so on...
+Return:
+	None
+*/
+void printHistogram() {
+}
+
+/*
+Description:
 	Runs the appropriate branch of the program and calls the relevant Python function
 Example:
-	keep_running = run_python_code(user_menu_selection);
+	bool continueRunning = chooseProgramBranch(userMenuSelection);
 Output:
 	Varies depending on Python function called, if any
 Return:
 	true if program should continue, false if not
 */
-bool runPythonCode(const Menu::choice& choice) {
+bool chooseProgramBranch(const Menu::choice& choice) {
 	// TODO: implement dis
 	return false;
 }
@@ -154,13 +172,20 @@ int main() {
 	//CallProcedure("printsomething");
 	//std::cout << callIntFunc("PrintMe", "House") << std::endl;
 	//std::cout << callIntFunc("SquareValue", 2);
-	try {
-		auto mainMenu = std::make_unique<Menu>();
-		int userInput = mainMenu->printAndGetInput();
-		runPythonCode(static_cast<Menu::choice>(userInput));
-	}
-	catch (const std::exception& e) {
-		cout << "Error: " << e.what();
+	bool runningProgram = true;
+	while (runningProgram) {
+		try {
+			CallProcedure("ItemCount"); // TODO: remove test case
+			int testFreq = callIntFunc("ItemFreq", "Cranberries"); // TODO: remove test case
+			CallProcedure("WriteFreqFile");
+			cout << testFreq;
+			auto mainMenu = std::make_unique<Menu>();
+			int userInput = mainMenu->printAndGetInput();
+			runningProgram = chooseProgramBranch(static_cast<Menu::choice>(userInput));
+		}
+		catch (const std::exception& e) {
+			cout << "Error: " << e.what();
+		}
 	}
 	return 0;
 }

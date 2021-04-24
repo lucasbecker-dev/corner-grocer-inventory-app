@@ -13,7 +13,7 @@ Example:
 */
 Menu::Menu() {
 	// create unique_ptr to string containing menu text
-	auto tempStringPtr = std::make_unique<std::string>("\n"
+	auto tempStringPtr = std::make_unique<std::string>(
 		"\nCorner Grocer Item-Tracker Menu"
 		"\n==============================="
 		"\n   (1) List items purchased today"
