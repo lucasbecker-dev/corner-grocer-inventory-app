@@ -1,5 +1,6 @@
 #include "Menu.h"
-
+#include <Windows.h>
+#include <cstdio>
 #include <string>
 #include <exception>
 #include <memory>
