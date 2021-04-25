@@ -26,10 +26,10 @@ public:
 	Menu(Menu&& r_menu) noexcept;
 	explicit Menu(std::string* t_menu_text, Menu::choice t_user_choice = NONE)
 		: m_menu_text_(t_menu_text), m_user_choice_(t_user_choice) {}
-	// Setter/getter for Menu text
+	// setter/getter for Menu text
 	void setMenuText(const std::string& t_menu_text);
 	std::string& getMenuText() const { return *m_menu_text_; }
-	// Getter/setter for user input
+	// setter/getter for user input
 	void setChoice(const Menu::choice t_menu_choice) { m_user_choice_ = t_menu_choice; }
 	Menu::choice getChoice() const { return m_user_choice_; }
 	// Prints the Menu text
