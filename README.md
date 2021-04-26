@@ -17,6 +17,6 @@ I got the chance to practice more with modern C++ concepts like move constructor
 
 ## How did you make this program maintainable, readable, and adaptable?
 It could be more maintainable if I'm being honest. If I could do it again I'd encapsulate the functions used to interface between C++ and Python into one or more classes of their own. I did encapsulate the Menu into its own class. Any changes there should have no impact on the rest of the program.
-I made it readable by sticking to commmon naming conventions, commenting extensively, and choosing descriptive, self-documenting names for everything.
+I made it readable by sticking to common naming conventions, commenting extensively, and choosing descriptive, self-documenting names for everything.
 It is pretty adaptable. Any one of those functions could be called in another scope and would still serve their purpose without issue. There is a hard-coded dependency on "Menu.h" though, which is perhaps not ideal.
 The next thing I'm planning to learn more about is design patterns, which should help with all of the above if I'm understanding correctly.
